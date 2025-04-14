@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:id="@+id/phoneLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:gravity="center_horizontal"
+        android:padding="32dp">
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome to ChatApp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginBottom="32dp"/>
+
+        <!-- Illustration -->
+        <ImageView
+            android:layout_width="360dp"
+            android:layout_height="360dp"
+            android:src="@drawable/ic_illustration_phone"
+            android:layout_marginBottom="24dp"/>
+
+<!--        &lt;!&ndash; Phone number input &ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:background="@drawable/rounded_input_bg"-->
+<!--            android:padding="12dp"-->
+<!--            android:layout_marginBottom="16dp">-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="+91"-->
+<!--                android:textColor="#000000"-->
+<!--                android:textSize="16sp"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_marginEnd="8dp" />-->
+
+<!--            <EditText-->
+<!--                android:id="@+id/etPhoneNumber"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="Phone Number"-->
+<!--                android:inputType="phone"-->
+<!--                android:background="@android:color/transparent"-->
+<!--                android:textColor="#000000"-->
+<!--                android:textSize="16sp" />-->
+<!--        </LinearLayout>-->
+        <Button
+            android:id="@+id/btnSendOTP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Send OTP"
+            android:textColor="#000000"
+            android:backgroundTint="#58E2A6"
+            android:background="@drawable/rounded_button_green"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/otpLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="32dp"
+        android:visibility="gone">
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Verify Account"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginBottom="32dp"/>
+
+        <!-- Illustration -->
+        <ImageView
+            android:layout_width="360dp"
+            android:layout_height="360dp"
+            android:src="@drawable/ic_illustration_otp"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Subtitle -->
+        <TextView
+            android:id="@+id/tvMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter The Verification Code Sent To\n+91XXXXXXXXXX"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- OTP Boxes -->
+        <LinearLayout
+            android:id="@+id/otpContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="10dp">
+
+            <!-- Create 4 separate input boxes -->
+            <EditText
+                android:id="@+id/etOTP"
+                android:textStyle="bold"
+                android:inputType="number"
+                android:textSize="16sp"
+                android:layout_width="150dp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:maxLength="6"
+
+                android:layout_height="wrap_content"/>
+
+            <!--            <EditText-->
+            <!--                style="@style/OtpBoxStyle"-->
+            <!--                android:id="@+id/etOTP2"/>-->
+
+            <!--            <EditText-->
+            <!--                style="@style/OtpBoxStyle"-->
+            <!--                android:id="@+id/etOTP3"/>-->
+
+            <!--            <EditText-->
+            <!--                style="@style/OtpBoxStyle"-->
+            <!--                android:id="@+id/etOTP4"/>-->
+            <!--            <EditText-->
+            <!--                style="@style/OtpBoxStyle"-->
+            <!--                android:id="@+id/etOTP5"/>-->
+            <!--            <EditText-->
+            <!--            style="@style/OtpBoxStyle"-->
+            <!--            android:id="@+id/etOTP6"/>-->
+
+        </LinearLayout>
+
+        <!-- Resend & Verify -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Didn't Receive the Code? "
+                android:textColor="#1B5E20"
+                android:textSize="14sp"
+                android:layout_marginBottom="24dp"/>
+            <TextView
+                android:id="@+id/resendOTP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Resend"
+                android:onClick="resendOTP"
+                android:textStyle="bold"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="14sp"
+
+                android:layout_marginBottom="24dp"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnVerifyOTP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Verify"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:backgroundTint="#58E2A6"
+            android:background="@drawable/rounded_button_green"/>
+    </LinearLayout>
+</LinearLayout>
