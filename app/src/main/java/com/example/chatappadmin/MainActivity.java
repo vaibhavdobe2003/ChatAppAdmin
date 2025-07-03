@@ -1,5 +1,6 @@
 package com.example.chatappadmin;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -62,13 +63,18 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     requestList.clear();
+                    assert queryDocumentSnapshots != null;
+
                     for (DocumentSnapshot doc : queryDocumentSnapshots) {
                         RequestModel msg = doc.toObject(RequestModel.class);
+                        msg.setDocumentId(doc.getId()); // 🔥 VERY IMPORTANT
                         requestList.add(msg);
                     }
+
                     requestListAdapter.notifyDataSetChanged();
                     progressBar.setVisibility(View.GONE);
                 });
     }
+
 }
 

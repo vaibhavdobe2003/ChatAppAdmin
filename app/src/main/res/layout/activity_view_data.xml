@@ -88,4 +88,18 @@
         android:background="#09CA10" />
 </LinearLayout>
 
+    <Button
+        android:id="@+id/sendData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Send Data"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:layout_margin="20dp"
+        android:layout_alignParentBottom="true">
+
+    </Button>
+
 </RelativeLayout>

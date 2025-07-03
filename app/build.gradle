@@ -27,6 +27,17 @@ android {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
+    packaging {
+        resources {
+            excludes += [
+                    'META-INF/LICENSE.md',
+                    'META-INF/LICENSE',
+                    'META-INF/NOTICE.md',   // 🔥 Add this line
+                    'META-INF/NOTICE'       // (optional) in case NOTICE is also duplicated
+            ]
+        }
+    }
+
 }
 
 dependencies {
@@ -37,7 +48,8 @@ dependencies {
         implementation libs.firebase.auth
         implementation libs.firebase.storage
         implementation libs.firebase.firestore
-        testImplementation libs.junit
+    implementation libs.firebase.database
+    testImplementation libs.junit
         androidTestImplementation libs.ext.junit
         androidTestImplementation libs.espresso.core
         // Firebase Play Integrity API
@@ -46,8 +58,12 @@ dependencies {
 //        implementation 'de.hdodenhof:circleimageview:3.1.0'
         // Google reCAPTCHA API
         implementation 'com.google.android.gms:play-services-safetynet:18.0.1'
-    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+        implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+        implementation 'com.sun.mail:android-mail:1.6.7'
+        implementation 'com.sun.mail:android-activation:1.6.7'
+    implementation 'com.google.firebase:firebase-firestore:24.7.1'
 
-        implementation 'com.github.bumptech.glide:glide:4.16.0'
+
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
         implementation 'com.squareup.picasso:picasso:2.71828'
     }

@@ -6,12 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+
 
 import com.example.chatappadmin.R;
 import com.example.chatappadmin.RequestModel;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
@@ -50,6 +52,33 @@ public class RequestListAdapter extends RecyclerView.Adapter<RequestListAdapter.
                 }
             }
         });
+
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int adapterPosition = holder.getAdapterPosition(); // ⚠️ don't cache early
+
+                if (adapterPosition != RecyclerView.NO_POSITION) {
+                    RequestModel request = requestList.get(adapterPosition);
+
+                    FirebaseFirestore.getInstance()
+                            .collection("investigateMessage")
+                            .document(request.getDocumentId())
+                            .delete()
+                            .addOnSuccessListener(unused -> {
+                                int latestPosition = holder.getAdapterPosition(); // 🔁 get fresh position
+                                if (latestPosition != RecyclerView.NO_POSITION && latestPosition < requestList.size()) {
+                                    requestList.remove(latestPosition);
+                                    notifyItemRemoved(latestPosition);
+                                }
+                            })
+                            .addOnFailureListener(e -> {
+                                Toast.makeText(v.getContext(), "Failed to delete: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            });
+                }
+            }
+        });
+
     }
 
     @Override
@@ -60,12 +89,14 @@ public class RequestListAdapter extends RecyclerView.Adapter<RequestListAdapter.
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView chatName,timestamp;
         ImageView arrow;
+        ImageView delete;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             chatName = itemView.findViewById(R.id.chatName);
             timestamp = itemView.findViewById(R.id.time);
             arrow=itemView.findViewById(R.id.arrow);
+            delete=itemView.findViewById(R.id.delete);
         }
     }
 }
